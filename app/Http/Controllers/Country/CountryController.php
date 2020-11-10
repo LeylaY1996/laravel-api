@@ -15,15 +15,39 @@ class CountryController extends Controller
 
     public function countryByID($id)
     {
-        return response()->json(CountryModel::find($id), 200);
+        $country = CountryModel::find($id);
+        if (is_null($country)) {
+            return response()->json("Böyle bir ülke yok", 404);
+        }
+        return response()->json($country, 200);
     }
 
 
-    /* 201 create success code */
+    /* 201 create save success code */
     public function countrySave(Request $request)
     {
-        var_dump($_POST);
         $country = CountryModel::create($request->all());
         return response()->json($country, 201);
+    }
+
+    public function countryUpdate(Request $request, $id)
+    {
+        $country = CountryModel::find($id);
+        if (is_null($country)) {
+            return response()->json("Böyle bir ülke yok", 404);
+        }
+        $country->update($request->all());
+        return response()->json($country, 200);
+    }
+
+    /* 204 create delete success code */
+    public function countryDelete(Request $request, $id)
+    {
+        $country = CountryModel::find($id);
+        if (is_null($country)) {
+            return response()->json("Böyle bir ülke yok", 404);
+        }
+        $country->delete();
+        return response()->json(null, 204);
     }
 }
