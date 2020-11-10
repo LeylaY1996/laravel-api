@@ -18,3 +18,5 @@ Route::get('/', function () {
 });
 
 Route::get('country', 'App\Http\Controllers\Country\CountryController@country');
+Route::get('country/{id}', 'App\Http\Controllers\Country\CountryController@countryByID');
+Route::post('countrySave', 'App\Http\Controllers\Country\CountryController@countrySave');

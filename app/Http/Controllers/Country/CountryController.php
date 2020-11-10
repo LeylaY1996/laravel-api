@@ -12,4 +12,18 @@ class CountryController extends Controller
     {
         return response()->json(CountryModel::get(), 200);
     }
+
+    public function countryByID($id)
+    {
+        return response()->json(CountryModel::find($id), 200);
+    }
+
+
+    /* 201 create success code */
+    public function countrySave(Request $request)
+    {
+        var_dump($_POST);
+        $country = CountryModel::create($request->all());
+        return response()->json($country, 201);
+    }
 }
