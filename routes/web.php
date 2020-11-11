@@ -23,4 +23,7 @@ Route::post('countrySave', 'App\Http\Controllers\Country\CountryController@count
 Route::put('country/{id}', 'App\Http\Controllers\Country\CountryController@countryUpdate');
 Route::delete('country/{id}', 'App\Http\Controllers\Country\CountryController@countryDelete'); */
 
-Route::apiResource('country', 'App\Http\Controllers\Country\Country');
+Route::apiResource('country', 'App\Http\Controllers\Country\Country')->middleware('api');
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
