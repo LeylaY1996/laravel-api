@@ -20,3 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 /* Route::group(['middleware' => 'auth:api'], function () {
 }); */
 Route::apiResource('country', 'App\Http\Controllers\Country\Country');
+Route::get('file/country_list', 'App\Http\Controllers\FileController@countryList');
+Route::post('file/country_list', 'App\Http\Controllers\FileController@countrySave');
